@@ -1,0 +1,20 @@
+{
+  "name": "bootstrap-wysihtml5",
+  "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Firnis/bootstrap-wysihtml5.git"
+  },
+  "author": "Firnis",
+  "license": "GPL",
+  "gitHead": "64fc1cd5790895c101637e022ad85cb200facf2c",
+  "readmeFilename": "readme.textile",
+  "bugs": {
+    "url": "https://github.com/Firnis/bootstrap-wysihtml5/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.2"
+  }
+}
