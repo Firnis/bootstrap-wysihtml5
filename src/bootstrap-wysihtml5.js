@@ -232,6 +232,7 @@
             var self = this;
             var insertImageModal = toolbar.find('.bootstrap-wysihtml5-insert-image-modal');
             var urlInput = insertImageModal.find('.bootstrap-wysihtml5-insert-image-url');
+            var insertButton = insertImageModal.find('a.btn-primary');
             var initialValue = urlInput.val();
             var caretBookmark;
 
@@ -246,7 +247,39 @@
                 self.editor.composer.commands.exec("insertImage", url);
             };
 
-            this.initModal(toolbar, insertImage, insertImageModal, urlInput, "insertImage");
+            urlInput.keypress(function(e) {
+                if(e.which == 13) {
+                    insertImage();
+                    insertImageModal.modal('hide');
+                }
+            });
+
+            insertButton.click(insertImage);
+
+            insertImageModal.on('shown', function() {
+                urlInput.focus();
+            });
+
+            insertImageModal.on('hide', function() {
+                self.editor.currentView.element.focus();
+            });
+
+            toolbar.find('a[data-wysihtml5-command=insertImage]').click(function() {
+                var activeButton = $(this).hasClass("wysihtml5-command-active");
+
+                if (!activeButton) {
+                    self.editor.currentView.element.focus(false);
+                    caretBookmark = self.editor.composer.selection.getBookmark();
+                    insertImageModal.appendTo('body').modal('show');
+                    insertImageModal.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
+                        e.stopPropagation();
+                    });
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            });
         },
 
         initInsertLink: function(toolbar) {
@@ -254,7 +287,7 @@
             var insertLinkModal = toolbar.find('.bootstrap-wysihtml5-insert-link-modal');
             var urlInput = insertLinkModal.find('.bootstrap-wysihtml5-insert-link-url');
             var targetInput = insertLinkModal.find('.bootstrap-wysihtml5-insert-link-target');
-            
+            var insertButton = insertLinkModal.find('a.btn-primary');
             var initialValue = urlInput.val();
             var caretBookmark;
 
@@ -274,39 +307,33 @@
                     'rel' : (newWindow ? 'nofollow' : '')
                 });
             };
+            var pressedEnter = false;
 
-            this.initModal(toolbar, insertLink, insertLinkModal, urlInput, "createLink");
-        },
-
-        initModal: function(toolbar, method, modalWindow, input) {
-            var self = this;
-            var insertButton = modalWindow.find('a.btn-primary');
-
-            input.keypress(function(e) {
+            urlInput.keypress(function(e) {
                 if(e.which == 13) {
-                    method();
-                    modalWindow.modal('hide');
+                    insertLink();
+                    insertLinkModal.modal('hide');
                 }
             });
 
-            insertButton.click(method);
+            insertButton.click(insertLink);
 
-            modalWindow.on('shown', function() {
-                input.focus();
+            insertLinkModal.on('shown', function() {
+                urlInput.focus();
             });
 
-            modalWindow.on('hide', function() {
+            insertLinkModal.on('hide', function() {
                 self.editor.currentView.element.focus();
             });
 
-            toolbar.find('a[data-wysihtml5-command=insertImage]').click(function() {
+            toolbar.find('a[data-wysihtml5-command=createLink]').click(function() {
                 var activeButton = $(this).hasClass("wysihtml5-command-active");
 
                 if (!activeButton) {
                     self.editor.currentView.element.focus(false);
                     caretBookmark = self.editor.composer.selection.getBookmark();
-                    insertImageModal.appendTo('body').modal('show');
-                    insertImageModal.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
+                    insertLinkModal.appendTo('body').modal('show');
+                    insertLinkModal.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
                         e.stopPropagation();
                     });
                     return false;
