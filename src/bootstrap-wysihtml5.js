@@ -1,12 +1,12 @@
-!function($, wysi) {
+(function($, wysi) {
     "use strict";
 
     var tpl = {
         "font-styles": function(locale, options) {
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li class='dropdown'>" +
-              "<a class='btn dropdown-toggle" + size + "' data-toggle='dropdown' href='#'>" +
-              "<i class='icon-font'></i>&nbsp;<span class='current-font'>" + locale.font_styles.normal + "</span>&nbsp;<b class='caret'></b>" +
+              "<a class='btn btn-default dropdown-toggle" + size + "' data-toggle='dropdown' href='#'>" +
+              "<i class='glyphicon glyphicon-font'></i>&nbsp;<span class='current-font'>" + locale.font_styles.normal + "</span>&nbsp;<b class='caret'></b>" +
               "</a>" +
               "<ul class='dropdown-menu'>" +
                 "<li><a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='div' tabindex='-1'>" + locale.font_styles.normal + "</a></li>" +
@@ -24,9 +24,9 @@
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li>" +
               "<div class='btn-group'>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='bold' title='CTRL+B' tabindex='-1'>" + locale.emphasis.bold + "</a>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='italic' title='CTRL+I' tabindex='-1'>" + locale.emphasis.italic + "</a>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='underline' title='CTRL+U' tabindex='-1'>" + locale.emphasis.underline + "</a>" +
+                "<a class='btn btn-default" + size + "' data-wysihtml5-command='bold' title='CTRL+B' tabindex='-1'>" + locale.emphasis.bold + "</a>" +
+                "<a class='btn btn-default" + size + "' data-wysihtml5-command='italic' title='CTRL+I' tabindex='-1'>" + locale.emphasis.italic + "</a>" +
+                "<a class='btn btn-default" + size + "' data-wysihtml5-command='underline' title='CTRL+U' tabindex='-1'>" + locale.emphasis.underline + "</a>" +
               "</div>" +
             "</li>";
         },
@@ -35,10 +35,10 @@
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li>" +
               "<div class='btn-group'>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='insertUnorderedList' title='" + locale.lists.unordered + "' tabindex='-1'><i class='icon-list'></i></a>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='insertOrderedList' title='" + locale.lists.ordered + "' tabindex='-1'><i class='icon-th-list'></i></a>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='Outdent' title='" + locale.lists.outdent + "' tabindex='-1'><i class='icon-indent-right'></i></a>" +
-                "<a class='btn" + size + "' data-wysihtml5-command='Indent' title='" + locale.lists.indent + "' tabindex='-1'><i class='icon-indent-left'></i></a>" +
+                "<a class='btn btn-default" + size + "' data-wysihtml5-command='insertUnorderedList' title='" + locale.lists.unordered + "' tabindex='-1'><i class='glyphicon glyphicon-list'></i></a>" +
+                "<a class='btn btn-default" + size + "' data-wysihtml5-command='insertOrderedList' title='" + locale.lists.ordered + "' tabindex='-1'><i class='glyphicon glyphicon-th-list'></i></a>" +
+                "<a class='btn btn-default" + size + "' data-wysihtml5-command='Outdent' title='" + locale.lists.outdent + "' tabindex='-1'><i class='glyphicon glyphicon-indent-right'></i></a>" +
+                "<a class='btn btn-default" + size + "' data-wysihtml5-command='Indent' title='" + locale.lists.indent + "' tabindex='-1'><i class='glyphicon glyphicon-indent-left'></i></a>" +
               "</div>" +
             "</li>";
         },
@@ -49,7 +49,7 @@
               "<div class='bootstrap-wysihtml5-insert-link-modal modal hide fade'>" +
                 "<div class='modal-header'>" +
                   "<a class='close' data-dismiss='modal'>&times;</a>" +
-                  "<h3>" + locale.link.insert + "</h3>" +
+                  "<h3>" + locale.link.submit + "</h3>" +
                 "</div>" +
                 "<div class='modal-body'>" +
                   "<input value='http://' class='bootstrap-wysihtml5-insert-link-url input-xlarge'>" +
@@ -57,10 +57,10 @@
                 "</div>" +
                 "<div class='modal-footer'>" +
                   "<a href='#' class='btn' data-dismiss='modal'>" + locale.link.cancel + "</a>" +
-                  "<a href='#' class='btn btn-primary' data-dismiss='modal'>" + locale.link.insert + "</a>" +
+                  "<a href='#' class='btn btn-primary' data-dismiss='modal'>" + locale.link.submit + "</a>" +
                 "</div>" +
               "</div>" +
-              "<a class='btn" + size + "' data-wysihtml5-command='createLink' title='" + locale.link.insert + "' tabindex='-1'><i class='icon-share'></i></a>" +
+              "<a class='btn btn-default" + size + "' data-wysihtml5-command='createLink' title='" + locale.link.submit + "' tabindex='-1'><i class='glyphicon glyphicon-share'></i></a>" +
             "</li>";
         },
 
@@ -70,17 +70,39 @@
               "<div class='bootstrap-wysihtml5-insert-image-modal modal hide fade'>" +
                 "<div class='modal-header'>" +
                   "<a class='close' data-dismiss='modal'>&times;</a>" +
-                  "<h3>" + locale.image.insert + "</h3>" +
+                  "<h3>" + locale.image.submit + "</h3>" +
                 "</div>" +
                 "<div class='modal-body'>" +
                   "<input value='http://' class='bootstrap-wysihtml5-insert-image-url input-xlarge'>" +
                 "</div>" +
                 "<div class='modal-footer'>" +
                   "<a href='#' class='btn' data-dismiss='modal'>" + locale.image.cancel + "</a>" +
-                  "<a href='#' class='btn btn-primary' data-dismiss='modal'>" + locale.image.insert + "</a>" +
+                  "<a href='#' class='btn btn-primary' data-dismiss='modal'>" + locale.image.submit + "</a>" +
                 "</div>" +
               "</div>" +
-              "<a class='btn" + size + "' data-wysihtml5-command='insertImage' title='" + locale.image.insert + "' tabindex='-1'><i class='icon-picture'></i></a>" +
+              "<a class='btn btn-default" + size + "' data-wysihtml5-command='insertImage' title='" + locale.image.submit + "' tabindex='-1'><i class='glyphicon glyphicon-picture'></i></a>" +
+            "</li>";
+        },
+
+        "upload-image": function(locale, options) {
+            var size = (options && options.size) ? ' btn-'+options.size : '';
+            return "<li>" +
+              "<div class='bootstrap-wysihtml5-upload-image-modal modal hide fade'>" +
+                "<div class='modal-header'>" +
+                  "<a class='close' data-dismiss='modal'>&times;</a>" +
+                  "<h3>" + locale["upload-image"].submit + "</h3>" +
+                "</div>" +
+                "<div class='modal-body'>" +
+                    '<form enctype="multipart/form-data" method="post" class="upload-image-form">' + 
+                        "<input type='file' name='image' class='bootstrap-wysihtml5-upload-image-url input-xlarge'>" +
+                    '</form>' +
+                "</div>" +
+                "<div class='modal-footer'>" +
+                  "<a href='#' class='btn' data-dismiss='modal'>" + locale["upload-image"].cancel + "</a>" +
+                  "<a href='#' class='btn btn-primary' data-dismiss='modal'>" + locale["upload-image"].submit + "</a>" +
+                "</div>" +
+              "</div>" +
+              "<a class='btn btn-default" + size + "' data-wysihtml5-command='uploadImage' title='" + locale["upload-image"].submit + "' tabindex='-1'><i class='glyphicon glyphicon-picture'></i></a>" +
             "</li>";
         },
 
@@ -88,7 +110,7 @@
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li>" +
               "<div class='btn-group'>" +
-                "<a class='btn" + size + "' data-wysihtml5-action='change_view' title='" + locale.html.edit + "' tabindex='-1'><i class='icon-pencil'></i></a>" +
+                "<a class='btn btn-default" + size + "' data-wysihtml5-action='change_view' title='" + locale.html.edit + "' tabindex='-1'><i class='glyphicon glyphicon-pencil'></i></a>" +
               "</div>" +
             "</li>";
         },
@@ -194,6 +216,10 @@
 
                     if(key === "image") {
                         this.initInsertImage(toolbar);
+                    }
+
+                    if(key === "upload-image") {
+                        this.initUploadImage(toolbar, options);
                     }
                 }
             }
@@ -307,7 +333,6 @@
                     'rel' : (newWindow ? 'nofollow' : '')
                 });
             };
-            var pressedEnter = false;
 
             urlInput.keypress(function(e) {
                 if(e.which == 13) {
@@ -342,7 +367,70 @@
                     return true;
                 }
             });
-        }
+        },
+
+        initUploadImage: function(toolbar, options) {
+            if(!options["upload-image-script"]) {
+                return;
+            }
+            var self = this;
+            var uploadImageModal = toolbar.find('.bootstrap-wysihtml5-upload-image-modal');
+            var uploadButton = uploadImageModal.find('a.btn-primary');
+            var caretBookmark;
+
+            var uploadImage = function() {
+                // TODO: Send Form Data to server
+                var form = uploadImageModal.find(".upload-image-form");
+                var data = new FormData(form.get(0));
+
+                $.ajax({
+                    url: options["upload-image-script"],
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    success: function(data){
+                        self.editor.currentView.element.focus();
+                        if (caretBookmark) {
+                          self.editor.composer.selection.setBookmark(caretBookmark);
+                          caretBookmark = null;
+                        }
+                        self.editor.composer.commands.exec("insertImage", url);
+                    }
+                });
+
+                
+
+            };
+
+            uploadButton.click(uploadImage);
+
+            uploadImageModal.on('shown', function() {
+                uploadImageModal.focus();
+            });
+
+            uploadImageModal.on('hide', function() {
+                self.editor.currentView.element.focus();
+            });
+
+            toolbar.find('a[data-wysihtml5-command=uploadImage]').click(function() {
+                var activeButton = $(this).hasClass("wysihtml5-command-active");
+
+                if (!activeButton) {
+                    self.editor.currentView.element.focus(false);
+                    caretBookmark = self.editor.composer.selection.getBookmark();
+                    uploadImageModal.appendTo('body').modal('show');
+                    uploadImageModal.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
+                        e.stopPropagation();
+                    });
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            });
+        },
     };
 
     // these define our public api
@@ -392,6 +480,7 @@
         "html": false,
         "link": true,
         "image": true,
+        "upload-image": true,
         events: {},
         parserRules: {
             classes: {
@@ -451,6 +540,7 @@
             }
         },
         stylesheets: ["./lib/css/wysiwyg-color.css"], // (path_to_project/lib/css/wysiwyg-color.css)
+        "upload-image-script": undefined,
         locale: "en"
     };
 
@@ -481,12 +571,16 @@
                 indent: "Indent"
             },
             link: {
-                insert: "Insert link",
+                submit: "Insert link",
                 cancel: "Cancel",
                 target: "Open link in new window"
             },
             image: {
-                insert: "Insert image",
+                submit: "Insert image",
+                cancel: "Cancel"
+            },
+            "upload-image": {
+                submit: "Upload image",
                 cancel: "Cancel"
             },
             html: {
@@ -508,4 +602,4 @@
         }
     };
 
-}(window.jQuery, window.wysihtml5);
+})(window.jQuery, window.wysihtml5);

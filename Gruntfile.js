@@ -3,6 +3,10 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
+		jshint: {
+			files: ['Gruntfile.js', 'src/bootstrap-wysihtml5.js']
+		},
+
 		concat: {
 			dist: {
 				files: [{
@@ -31,7 +35,8 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
 
-	grunt.registerTask('default', ['concat', 'uglify']);
+	grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 
 };

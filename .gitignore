@@ -3,5 +3,5 @@
 /*.project
 node_modules
 bootstrap-wysihtml5.sublime-project
-
 bootstrap-wysihtml5.sublime-workspace
+/dist/
